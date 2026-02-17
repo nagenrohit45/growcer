@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import styles from "../../Styles/Categories.module.css";
 
-import vegetables from "../../assets/images/Categories/vegetables.jpg";
-import fruits from "../../assets/images/Categories/fruits.jpg";
-import dairy from "../../assets/images/Categories/dairy.jpg";
-import essentials from "../../assets/images/Categories/essentials.jpg";
+import vegetables from "../../assets/images/categories/vegetables.jpg";
+import fruits from "../../assets/images/categories/fruits.jpg";
+import dairy from "../../assets/images/categories/dairy.jpg";
+import essentials from "../../assets/images/categories/essentials.jpg";
 
 
 const categoryData = [
