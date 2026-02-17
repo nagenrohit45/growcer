@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import heroBg from "../../assets/Images/hero.png";
+import heroBg from "../../assets/images/hero.png";
 import styles from "../../Styles/Hero.module.css";
 
 const Hero = () => {

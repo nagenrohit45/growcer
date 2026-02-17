@@ -1,7 +1,7 @@
-import tomatoesImg from "../../assets/Images/products/tomatoes.png";
-import applesImg from "../../assets/Images/products/apples.png";
-import milkImg from "../../assets/Images/products/milk.png";
-import riceImg from "../../assets/Images/products/rice.png";
+import tomatoesImg from "../../assets/images/products/tomatoes.png";
+import applesImg from "../../assets/images/products/apples.png";
+import milkImg from "../../assets/images/products/milk.png";
+import riceImg from "../../assets/images/products/rice.png";
 
 const FeaturedProducts = ({ addToCart }) => {
   return (

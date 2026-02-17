@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-import vegImg from "../../assets/Images/vegetables.png";
-import fruitImg from "../../assets/Images/fruits.png";
-import dairyImg from "../../assets/Images/dairy.png";
-import essentialsImg from "../../assets/Images/daily essentials.png";
+import vegImg from "../../assets/images/vegetables.png";
+import fruitImg from "../../assets/images/fruits.png";
+import dairyImg from "../../assets/images/dairy.png";
+import essentialsImg from "../../assets/images/daily essentials.png";
 
 const CategorySection = () => {
   const navigate = useNavigate();

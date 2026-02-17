@@ -1,28 +1,28 @@
 import { useParams } from "react-router-dom";
 
-import tomatoImg from "../assets/Images/Category img/Vegetables/tomato.jpg";
-import potatoImg from "../assets/Images/Category img/Vegetables/potato.jpg";
-import onionImg from "../assets/Images/Category img/Vegetables/onion.jpg";
-import carrotImg from "../assets/Images/Category img/Vegetables/carrot.jpg";
-import cabbageImg from "../assets/Images/Category img/Vegetables/cabbage.jpg";
+import tomatoImg from "../assets/images/Category img/Vegetables/tomato.jpg";
+import potatoImg from "../assets/images/Category img/Vegetables/potato.jpg";
+import onionImg from "../assets/images/Category img/Vegetables/onion.jpg";
+import carrotImg from "../assets/images/Category img/Vegetables/carrot.jpg";
+import cabbageImg from "../assets/images/Category img/Vegetables/cabbage.jpg";
 
-import appleImg from "../assets/Images/Category img/Fruits/apple.jpg";
-import bananaImg from "../assets/Images/Category img/Fruits/banana.jpg";
-import orangeImg from "../assets/Images/Category img/Fruits/orange.jpg";
-import mangoImg from "../assets/Images/Category img/Fruits/mango.jpg";
-import grapesImg from "../assets/Images/Category img/Fruits/grape.jpg";
+import appleImg from "../assets/images/Category img/Fruits/apple.jpg";
+import bananaImg from "../assets/images/Category img/Fruits/banana.jpg";
+import orangeImg from "../assets/images/Category img/Fruits/orange.jpg";
+import mangoImg from "../assets/images/Category img/Fruits/mango.jpg";
+import grapesImg from "../assets/images/Category img/Fruits/grape.jpg";
 
-import milkImg from "../assets/Images/Category img/Dairy/milk.jpg";
-import curdImg from "../assets/Images/Category img/Dairy/curd.jpg";
-import butterImg from "../assets/Images/Category img/Dairy/butter.jpg";
-import paneerImg from "../assets/Images/Category img/Dairy/paneer.jpg";
-import cheeseImg from "../assets/Images/Category img/Dairy/cheese.jpg";
+import milkImg from "../assets/images/Category img/Dairy/milk.jpg";
+import curdImg from "../assets/images/Category img/Dairy/curd.jpg";
+import butterImg from "../assets/images/Category img/Dairy/butter.jpg";
+import paneerImg from "../assets/images/Category img/Dairy/paneer.jpg";
+import cheeseImg from "../assets/images/Category img/Dairy/cheese.jpg";
 
-import riceImg from "../assets/Images/Category img/Essentials/rice.jpg";
-import dalImg from "../assets/Images/Category img/Essentials/dal.jpg";
-import sugarImg from "../assets/Images/Category img/Essentials/sugar.jpg";
-import saltImg from "../assets/Images/Category img/Essentials/salt.jpg";
-import oilImg from "../assets/Images/Category img/Essentials/oil.jpg";
+import riceImg from "../assets/images/Category img/Essentials/rice.jpg";
+import dalImg from "../assets/images/Category img/Essentials/dal.jpg";
+import sugarImg from "../assets/images/Category img/Essentials/sugar.jpg";
+import saltImg from "../assets/images/Category img/Essentials/salt.jpg";
+import oilImg from "../assets/images/Category img/Essentials/oil.jpg";
 
 const productsData = [
   // ================= VEGETABLES =================
