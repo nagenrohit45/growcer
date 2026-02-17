@@ -1,0 +1,47 @@
+.heroButtons {
+  display: flex;
+  gap: 18px;
+}
+
+.heroBtn {
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* MOBILE TUNING */
+@media (max-width: 576px) {
+  .heroButtons {
+    flex-direction: row;
+    align-items: flex-end;
+    margin: 30px;
+  }
+
+  .mobileFooter {
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+  }
+
+  .heroBtn {
+    padding: 5px 5px;     /* SMALLER */
+    font-size: 15px;    /* SMALLER */
+    border-radius: 8px;
+  }
+}
+
+
+
+.hideMobile {
+  display: block;
+}
+
+@media (max-width: 576px) {
+  .hideMobile {
+    display: none;
+  }
+}
+
+
+
