@@ -7,7 +7,7 @@ const pages = {
   },
   contact: {
     title: "Contact & support",
-    body: "Need to check an order? Sign in and open My orders to find its receipt and reference number. This deployment is a demonstration store; it does not dispatch groceries or provide a staffed customer support service.",
+    body: "Have a question about Growcer? Email us using the address below. For an order question, include the order number from My orders. Payments and deliveries on this website are demonstrations only.",
   },
   privacy: {
     title: "Privacy policy",
@@ -69,6 +69,17 @@ export default function Information({ page }) {
         <p className="eyebrow">Growcer</p>
         <h1>{data.title}</h1>
         <p className="lead mt-4">{data.body}</p>
+        {page === "contact" && (
+          <div className="contact-email-card">
+            <h2 className="h5">Email us</h2>
+            <a href="mailto:yellanurunagendra45@gmail.com">
+              yellanurunagendra45@gmail.com
+            </a>
+            <p className="small text-muted mt-2 mb-0">
+              Click the email address to open your email app.
+            </p>
+          </div>
+        )}
         <div className="d-flex gap-3 mt-4 flex-wrap">
           <Link
             className="btn btn-success"

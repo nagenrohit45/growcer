@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import hero from "../../assets/images/hero.webp";
+import desktopHero from "../../assets/images/hero-desktop-cutout.webp";
 export default function Hero() {
   return (
     <section className="hero">
@@ -25,14 +26,17 @@ export default function Hero() {
             Vegetables · Fruits · Dairy · Daily essentials
           </p>
         </div>
-        <img
-          className="hero-image"
-          src={hero}
-          alt="A selection of fresh groceries"
-          width="600"
-          height="410"
-          fetchPriority="high"
-        />
+        <picture className="hero-media">
+          <source media="(min-width: 1025px)" srcSet={desktopHero} />
+          <img
+            className="hero-image"
+            src={hero}
+            alt="A selection of fresh groceries"
+            width="600"
+            height="410"
+            fetchPriority="high"
+          />
+        </picture>
       </div>
     </section>
   );

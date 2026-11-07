@@ -1,18 +1,23 @@
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { products } from "../Data/products";
 import ProductCard from "../Components/Common/ProductCard";
+import { getSearchSuggestions } from "../lib/search";
 export default function Products({ addToCart }) {
   const { category } = useParams();
   const [params, setParams] = useSearchParams();
   const query = (params.get("q") || "").trim().toLowerCase();
   const sort = params.get("sort") || "featured";
+  const selectedProduct = params.get("product");
   const valid = ["all", "vegetables", "fruits", "dairy", "essentials"].includes(
     category,
   );
-  const filtered = products.filter(
+  const matches = query
+    ? getSearchSuggestions(products, query, products.length)
+    : products;
+  const filtered = matches.filter(
     (p) =>
       (category === "all" || p.category === category) &&
-      (p.name + " " + p.category).toLowerCase().includes(query),
+      (!selectedProduct || String(p.id) === selectedProduct),
   );
   if (sort === "low") filtered.sort((a, b) => a.price - b.price);
   if (sort === "high") filtered.sort((a, b) => b.price - a.price);

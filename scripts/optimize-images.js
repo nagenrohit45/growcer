@@ -8,13 +8,14 @@ async function visit(directory) {
     if (entry.isDirectory()) await visit(source);
     else if (/\.(png|jpe?g)$/i.test(entry.name)) {
       const destination = source.replace(/\.(png|jpe?g)$/i, ".webp");
+      const desktopCutout = entry.name === "hero-desktop-cutout.png";
       await sharp(source)
         .rotate()
         .resize({
-          width: entry.name === "hero.png" ? 1200 : 640,
+          width: desktopCutout ? 1536 : entry.name === "hero.png" ? 1200 : 640,
           withoutEnlargement: true,
         })
-        .webp({ quality: 80 })
+        .webp({ quality: desktopCutout ? 90 : 80, alphaQuality: 100 })
         .toFile(destination);
     }
   }

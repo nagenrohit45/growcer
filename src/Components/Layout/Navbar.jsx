@@ -1,16 +1,10 @@
 import { useState } from "react";
-import { Link, NavLink, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, NavLink, useSearchParams } from "react-router-dom";
+import SearchBox from "../Common/SearchBox";
 export default function Navbar({ cart, user, onLogout, onSignIn }) {
   const [open, setOpen] = useState(false);
   const [params] = useSearchParams();
-  const navigate = useNavigate();
   const total = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const search = (event) => {
-    event.preventDefault();
-    const q = new FormData(event.currentTarget).get("q").trim();
-    navigate("/products/all" + (q ? "?q=" + encodeURIComponent(q) : ""));
-    setOpen(false);
-  };
   return (
     <header className="store-header">
       <div className="container">
@@ -19,27 +13,11 @@ export default function Navbar({ cart, user, onLogout, onSignIn }) {
             Growcer<span>●</span>
           </Link>
           <span className="header-tagline">Good food. Every day.</span>
-          <form
-            role="search"
-            onSubmit={search}
-            className="search-form"
+          <SearchBox
             key={params.get("q") || "empty"}
-          >
-            <label className="visually-hidden" htmlFor="product-search">
-              Search groceries
-            </label>
-            <input
-              id="product-search"
-              name="q"
-              type="search"
-              placeholder="Search rice, milk, vegetables…"
-              defaultValue={params.get("q") || ""}
-              maxLength="100"
-            />
-            <button type="submit" aria-label="Search groceries">
-              Search
-            </button>
-          </form>
+            initialQuery={params.get("q") || ""}
+            onNavigate={() => setOpen(false)}
+          />
           <Link
             to="/cart"
             className="cart-link"
