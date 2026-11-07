@@ -1,150 +1,30 @@
-import tomatoesImg from "../../assets/images/products/tomatoes.png";
-import applesImg from "../../assets/images/products/apples.png";
-import milkImg from "../../assets/images/products/milk.png";
-import riceImg from "../../assets/images/products/rice.png";
-
-const FeaturedProducts = ({ addToCart }) => {
+import { Link } from "react-router-dom";
+import { featured } from "../../Data/products";
+import ProductCard from "../Common/ProductCard";
+export default function FeaturedProducts({ addToCart }) {
   return (
-    <section className="featured-products py-5 bg-light">
+    <section className="section-space">
       <div className="container">
-        {/* Heading */}
-        <div className="text-center mb-5">
-          <h2 className="fw-bold">Featured Products</h2>
-          <p className="text-muted mt-2">Popular items customers buy daily</p>
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Basket favourites</p>
+            <h2>Fresh picks for your week</h2>
+            <p className="text-muted">
+              Your everyday essentials, all in one place.
+            </p>
+          </div>
+          <Link className="text-success fw-semibold" to="/products/all">
+            Shop all products →
+          </Link>
         </div>
-
-        <div className="row g-4">
-          {/* Fresh Tomatoes */}
-          <div className="col-md-3">
-            <div className="card h-100 shadow-sm border-0">
-              <img
-                src={tomatoesImg}
-                alt="Fresh Tomatoes"
-                className="card-img-top"
-                style={{ height: "200px", objectFit: "cover" }}
-              />
-              <div className="card-body">
-                <h6 className="fw-semibold">Fresh Tomatoes</h6>
-                <p className="text-muted small mb-2">1 Kg</p>
-                <div className="d-flex justify-content-between align-items-center">
-                  <span className="fw-bold text-success">₹40</span>
-                  <button
-                    className="btn btn-sm btn-success"
-                    onClick={() =>
-                      addToCart({
-                        id: 100,
-                        name: "Fresh Tomatoes",
-                        price: 40,
-                        quantity: 1,
-                      })
-                    }
-                  >
-                    Add
-                  </button>
-                </div>
-              </div>
+        <div className="row g-3 g-lg-4">
+          {featured.map((product) => (
+            <div className="col-6 col-lg-3" key={product.id}>
+              <ProductCard product={product} addToCart={addToCart} />
             </div>
-          </div>
-
-          {/* Apples */}
-          <div className="col-md-3">
-            <div className="card h-100 shadow-sm border-0">
-              <img
-                src={applesImg}
-                alt="Apples"
-                className="card-img-top"
-                style={{ height: "200px", objectFit: "cover" }}
-              />
-              <div className="card-body">
-                <h6 className="fw-semibold">Apples</h6>
-                <p className="text-muted small mb-2">1 Kg</p>
-                <div className="d-flex justify-content-between align-items-center">
-                  <span className="fw-bold text-success">₹120</span>
-                  <button
-                    className="btn btn-sm btn-success"
-                    onClick={() =>
-                      addToCart({
-                        id: 101,
-                        name: "Apples",
-                        price: 120,
-                        quantity: 1,
-                      })
-                    }
-                  >
-                    Add
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Milk */}
-          <div className="col-md-3">
-            <div className="card h-100 shadow-sm border-0">
-              <img
-                src={milkImg}
-                alt="Milk"
-                className="card-img-top"
-                style={{ height: "200px", objectFit: "cover" }}
-              />
-              <div className="card-body">
-                <h6 className="fw-semibold">Milk</h6>
-                <p className="text-muted small mb-2">500 ml</p>
-                <div className="d-flex justify-content-between align-items-center">
-                  <span className="fw-bold text-success">₹30</span>
-                  <button
-                    className="btn btn-sm btn-success"
-                    onClick={() =>
-                      addToCart({
-                        id: 102,
-                        name: "Milk",
-                        price: 30,
-                        quantity: 1,
-                      })
-                    }
-                  >
-                    Add
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Rice */}
-          <div className="col-md-3">
-            <div className="card h-100 shadow-sm border-0">
-              <img
-                src={riceImg}
-                alt="Rice"
-                className="card-img-top"
-                style={{ height: "200px", objectFit: "cover" }}
-              />
-              <div className="card-body">
-                <h6 className="fw-semibold">Rice</h6>
-                <p className="text-muted small mb-2">5 Kg</p>
-                <div className="d-flex justify-content-between align-items-center">
-                  <span className="fw-bold text-success">₹350</span>
-                  <button
-                    className="btn btn-sm btn-success"
-                    onClick={() =>
-                      addToCart({
-                        id: 103,
-                        name: "Rice",
-                        price: 350,
-                        quantity: 1,
-                      })
-                    }
-                  >
-                    Add
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default FeaturedProducts;
+}

@@ -1,176 +1,131 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-const Cart = ({ cart, setCart }) => {
-
-  const navigate = useNavigate();
-
-  const [selectedCoupon, setSelectedCoupon] = useState("");
-
-  // Increase quantity
-  const increaseQty = (id) => {
-    setCart(
-      cart.map(item =>
-        item.id === id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
+import { Link } from "react-router-dom";
+import { coupons, priceCart } from "../../shared/catalog";
+import { money } from "../lib/client";
+export default function Cart({ cart, setCart, coupon, setCoupon }) {
+  if (!cart.length)
+    return (
+      <section className="container section-space">
+        <div className="empty-state">
+          <p className="eyebrow">Your basket</p>
+          <h1>Your cart is empty</h1>
+          <p>Fresh finds are just a few clicks away.</p>
+          <Link className="btn btn-success" to="/products/all">
+            Start shopping
+          </Link>
+        </div>
+      </section>
     );
-  };
-
-  // Decrease quantity
-  const decreaseQty = (id) => {
-    setCart(
-      cart
-        .map(item =>
-          item.id === id
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        )
-        .filter(item => item.quantity > 0)
-    );
-  };
-
-  // Remove item
-  const removeItem = (id) => {
-    setCart(cart.filter(item => item.id !== id));
-  };
-
-  // Calculate subtotal
-  const subtotal = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
+  const pricing = priceCart(
+    cart,
+    coupons.some((c) => c.code === coupon) ? coupon : "",
   );
-
-  // Coupon discount logic
-  let calculatedDiscount = 0;
-
-  if (selectedCoupon === "SAVE10") {
-    calculatedDiscount = subtotal * 0.10;
-  } 
-  else if (selectedCoupon === "FLAT50") {
-    calculatedDiscount = 50;
-  } 
-  else if (selectedCoupon === "FREESHIP") {
-    calculatedDiscount = 30;
-  }
-
-  const totalPrice = subtotal - calculatedDiscount;
-
+  const quantity = (id, delta) =>
+    setCart((current) =>
+      current
+        .map((p) =>
+          p.id === id
+            ? { ...p, quantity: Math.min(99, p.quantity + delta) }
+            : p,
+        )
+        .filter((p) => p.quantity > 0),
+    );
   return (
-    <div className="container py-5">
-      <div className="row justify-content-center">
-        <div className="col-lg-8 col-xl-6">
-
-          <h2 className="mb-4 text-center">Your Cart</h2>
-
-          {cart.length === 0 ? (
-            <p className="text-center">Your cart is empty.</p>
-          ) : (
-            <>
-              {/* Cart Items */}
-              {cart.map(item => (
-                <div key={item.id} className="card shadow-sm mb-4 border-0">
-                  <div className="card-body">
-
-                    <div className="d-flex justify-content-between align-items-center">
-
-                      <div>
-                        <h5 className="mb-1">{item.name}</h5>
-                        <small className="text-muted">₹{item.price} each</small>
-                      </div>
-
-                      <div className="d-flex align-items-center gap-3">
-
-                        <button
-                          className="btn btn-outline-secondary btn-sm"
-                          onClick={() => decreaseQty(item.id)}
-                        >
-                          -
-                        </button>
-
-                        <span className="fw-bold">{item.quantity}</span>
-
-                        <button
-                          className="btn btn-outline-secondary btn-sm"
-                          onClick={() => increaseQty(item.id)}
-                        >
-                          +
-                        </button>
-
-                      </div>
-
-                      <div className="fw-bold">
-                        ₹{item.price * item.quantity}
-                      </div>
-
-                      <button
-                        className="btn btn-outline-danger btn-sm"
-                        onClick={() => removeItem(item.id)}
-                      >
-                        Remove
-                      </button>
-
-                    </div>
-
-                  </div>
-                </div>
-              ))}
-
-              {/* Coupon Section */}
-              <div className="card shadow-sm p-4 mb-4">
-                <h6 className="mb-3">Select Coupon</h6>
-
-                <select
-                  className="form-select"
-                  value={selectedCoupon}
-                  onChange={(e) => setSelectedCoupon(e.target.value)}
-                >
-                  <option value="">No Coupon</option>
-                  <option value="SAVE10">SAVE10 - 10% Off</option>
-                  <option value="FLAT50">FLAT50 - ₹50 Off</option>
-                  <option value="FREESHIP">FREESHIP - ₹30 Off</option>
-                </select>
-              </div>
-
-              {/* Total Section */}
-              <div className="card shadow-sm p-4 border-0">
-
-                <div className="d-flex justify-content-between">
-                  <span>Subtotal</span>
-                  <span>₹{subtotal}</span>
-                </div>
-
-                {calculatedDiscount > 0 && (
-                  <div className="d-flex justify-content-between text-success">
-                    <span>Discount</span>
-                    <span>- ₹{calculatedDiscount.toFixed(0)}</span>
-                  </div>
-                )}
-
-                <hr />
-
-                <div className="d-flex justify-content-between fw-bold">
-                  <span>Total</span>
-                  <span>₹{totalPrice.toFixed(0)}</span>
-                </div>
-
+    <section className="container section-space">
+      <p className="eyebrow">Ready when you are</p>
+      <h1>Your cart</h1>
+      <p className="text-muted">A little freshness for your everyday.</p>
+      <div className="row g-4 mt-1">
+        <div className="col-lg-8">
+          {cart.map((item) => (
+            <article key={item.id} className="basket-item">
+              <img src={item.image} alt={item.name} width="88" height="88" />
+              <div className="basket-description">
+                <h2 className="h5">{item.name}</h2>
+                <p className="text-muted small mb-1">
+                  {item.unit} · {money(item.price)} each
+                </p>
                 <button
-                  className="btn btn-success w-100 mt-3"
-                  onClick={() => navigate("/checkout")}
+                  className="link-button text-danger small"
+                  aria-label={"Remove " + item.name}
+                  onClick={() =>
+                    setCart((current) =>
+                      current.filter((p) => p.id !== item.id),
+                    )
+                  }
                 >
-                  Proceed to Checkout
+                  Remove
                 </button>
-
               </div>
-
-            </>
-          )}
-
+              <div className="quantity-control">
+                <button
+                  aria-label={"Decrease " + item.name + " quantity"}
+                  onClick={() => quantity(item.id, -1)}
+                >
+                  −
+                </button>
+                <span aria-label={item.name + " quantity"}>
+                  {item.quantity}
+                </span>
+                <button
+                  aria-label={"Increase " + item.name + " quantity"}
+                  disabled={item.quantity >= 99}
+                  onClick={() => quantity(item.id, 1)}
+                >
+                  +
+                </button>
+              </div>
+              <strong>{money(item.price * item.quantity)}</strong>
+            </article>
+          ))}
+          <Link className="text-success d-inline-block mt-3" to="/products/all">
+            ← Continue shopping
+          </Link>
+        </div>
+        <div className="col-lg-4">
+          <div className="summary-card">
+            <h2 className="h4">Basket summary</h2>
+            <label htmlFor="coupon" className="form-label mt-3">
+              Select coupon
+            </label>
+            <select
+              id="coupon"
+              className="form-select mb-4"
+              value={pricing.coupon}
+              onChange={(event) => setCoupon(event.target.value)}
+            >
+              <option value="">No coupon</option>
+              {coupons.map((c) => (
+                <option key={c.code} value={c.code}>
+                  {c.code} — {c.label}
+                </option>
+              ))}
+            </select>
+            <div className="summary-line">
+              <span>Subtotal</span>
+              <span>{money(pricing.subtotal)}</span>
+            </div>
+            <div className="summary-line text-success">
+              <span>Discount</span>
+              <span>−{money(pricing.discount)}</span>
+            </div>
+            <div className="summary-line">
+              <span>Delivery</span>
+              <span>Demo · no fee</span>
+            </div>
+            <hr />
+            <div className="summary-line fw-bold fs-5">
+              <span>Total</span>
+              <span data-testid="cart-total">{money(pricing.total)}</span>
+            </div>
+            <Link to="/checkout" className="btn btn-success w-100 mt-4">
+              Proceed to checkout →
+            </Link>
+            <p className="small text-muted mb-0 mt-3">
+              Payments are simulated. No money will be charged.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
-};
-
-export default Cart;
+}

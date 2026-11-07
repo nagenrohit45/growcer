@@ -1,0 +1,8 @@
+.env
+.env.*
+!.env.example
+.git
+dist-verify
+test-results
+playwright-report
+tests

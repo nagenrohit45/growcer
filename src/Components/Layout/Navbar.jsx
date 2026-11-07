@@ -1,106 +1,105 @@
-import styles from "../../Styles/Navbar.module.css";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-
-const Navbar = ({ cart, onLogout, setSearchQuery }) => {
+import { useState } from "react";
+import { Link, NavLink, useNavigate, useSearchParams } from "react-router-dom";
+export default function Navbar({ cart, user, onLogout, onSignIn }) {
+  const [open, setOpen] = useState(false);
+  const [params] = useSearchParams();
   const navigate = useNavigate();
-  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    onLogout();
+  const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const search = (event) => {
+    event.preventDefault();
+    const q = new FormData(event.currentTarget).get("q").trim();
+    navigate("/products/all" + (q ? "?q=" + encodeURIComponent(q) : ""));
+    setOpen(false);
   };
-
   return (
-    <header className={styles.headerWrapper}>
-      <nav className="navbar navbar-expand-lg">
-        <div className="container">
-          {/* LOGO */}
-          <a className="navbar-brand  fw-bold" href="/">
-            Growcer
-          </a>
-
-          {/* TOGGLER (MOBILE) */}
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#mainNavbar"
+    <header className="store-header">
+      <div className="container">
+        <div className="header-top">
+          <Link to="/" className="brand" aria-label="Growcer home">
+            Growcer<span>●</span>
+          </Link>
+          <span className="header-tagline">Good food. Every day.</span>
+          <form
+            role="search"
+            onSubmit={search}
+            className="search-form"
+            key={params.get("q") || "empty"}
           >
-            <span className="navbar-toggler-icon"></span>
+            <label className="visually-hidden" htmlFor="product-search">
+              Search groceries
+            </label>
+            <input
+              id="product-search"
+              name="q"
+              type="search"
+              placeholder="Search rice, milk, vegetables…"
+              defaultValue={params.get("q") || ""}
+              maxLength="100"
+            />
+            <button type="submit" aria-label="Search groceries">
+              Search
+            </button>
+          </form>
+          <Link
+            to="/cart"
+            className="cart-link"
+            aria-label={"Cart, " + total + " items"}
+          >
+            Cart <span>{total}</span>
+          </Link>
+          <button
+            className="menu-toggle"
+            aria-label="Toggle navigation"
+            aria-expanded={open}
+            aria-controls="store-navigation"
+            onClick={() => setOpen(!open)}
+          >
+            ☰
           </button>
-
-          {/* ALL NAV CONTENT */}
-          <div className="collapse navbar-collapse" id="mainNavbar">
-            {/* LEFT : CATEGORIES */}
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-3">
-              <li className="nav-item">
-                <Link
-                  className="nav-link fw-semibold"
-                  to="/products/vegetables"
-                >
-                  Vegetables
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link className="nav-link fw-semibold" to="/products/fruits">
-                  Fruits
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link className="nav-link fw-semibold" to="/products/dairy">
-                  Dairy & Bakery
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link
-                  className="nav-link fw-semibold"
-                  to="/products/essentials"
-                >
-                  Rice & Pulses
-                </Link>
-              </li>
-            </ul>
-
-            {/* RIGHT : SEARCH + LOGIN + CART */}
-            <div className="d-flex align-items-center gap-3">
-              {/* SEARCH */}
-              <input
-                type="text"
-                className="form-control d-none d-lg-block"
-                placeholder="Search rice, milk, vegetables..."
-                style={{ width: "420px" }}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                  navigate("/products/all");
-                }}
-              />
-
-              {/* LOGOUT */}
-              <button className="btn btn-danger ms-3" onClick={handleLogout}>
-                Logout
-              </button>
-
-              {/* CART */}
-              <Link
-                to="/cart"
-                className="btn btn-outline-success position-relative"
-              >
-                Cart
-                {totalItems > 0 && (
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {totalItems}
-                  </span>
-                )}
-              </Link>
-            </div>
-          </div>
         </div>
-      </nav>
+        <nav
+          id="store-navigation"
+          className={"store-navigation " + (open ? "is-open" : "")}
+          aria-label="Main navigation"
+        >
+          <div className="nav-categories">
+            {[
+              ["all", "Shop all"],
+              ["vegetables", "Vegetables"],
+              ["fruits", "Fruits"],
+              ["dairy", "Dairy & Bakery"],
+              ["essentials", "Rice & Pulses"],
+            ].map(([id, label]) => (
+              <NavLink
+                key={id}
+                to={"/products/" + id}
+                onClick={() => setOpen(false)}
+              >
+                {label}
+              </NavLink>
+            ))}
+            <NavLink to="/offers" onClick={() => setOpen(false)}>
+              Offers
+            </NavLink>
+          </div>
+          <div className="account-navigation">
+            {user ? (
+              <>
+                <NavLink to="/orders" onClick={() => setOpen(false)}>
+                  My orders
+                </NavLink>
+                <button onClick={onLogout} className="link-button">
+                  Sign out
+                </button>
+              </>
+            ) : (
+              <button className="link-button" onClick={onSignIn}>
+                Sign in / Register
+              </button>
+            )}
+          </div>
+        </nav>
+      </div>
     </header>
   );
-};
-
-export default Navbar;
+}

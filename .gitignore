@@ -9,6 +9,13 @@ lerna-debug.log*
 
 node_modules
 dist
+dist-verify
+.vercel
+.env
+.env.*
+!.env.example
+playwright-report
+test-results
 dist-ssr
 *.local
 
@@ -22,3 +29,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.vercel
+.env*
+!.env.example

@@ -1,102 +1,50 @@
-import { useNavigate } from "react-router-dom";
-
-import vegImg from "../../assets/images/vegetables.png";
-import fruitImg from "../../assets/images/fruits.png";
-import dairyImg from "../../assets/images/dairy.png";
-import essentialsImg from "../../assets/images/daily essentials.png";
-
-const CategorySection = () => {
-  const navigate = useNavigate();
-
+import { Link } from "react-router-dom";
+import vegetables from "../../assets/images/categories/vegetables.webp";
+import fruits from "../../assets/images/categories/fruits.webp";
+import dairy from "../../assets/images/categories/dairy.webp";
+import essentials from "../../assets/images/categories/essentials.webp";
+const categories = [
+  ["vegetables", "Vegetables", "Farm-fresh favourites", vegetables],
+  ["fruits", "Fruits", "Colourful everyday picks", fruits],
+  ["dairy", "Dairy", "Milk, cheese & more", dairy],
+  ["essentials", "Daily essentials", "Your pantry, sorted", essentials],
+];
+export default function CategorySection() {
   return (
-    <section className="category-section py-5 bg-light">
+    <section className="section-space category-section">
       <div className="container">
-        {/* Section Heading */}
-        <div className="text-center mb-5">
-          <h2 className="fw-bold">Shop by Category</h2>
-          <p className="text-muted mt-2">
-            Fresh products handpicked for your daily needs
-          </p>
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Find your favourites</p>
+            <h2>Shop by category</h2>
+            <p className="text-muted mb-0">A fresh start for every meal.</p>
+          </div>
+          <Link className="text-success fw-semibold" to="/products/all">
+            View all groceries →
+          </Link>
         </div>
-
-        {/* Categories */}
-        <div className="row g-4">
-          {/* Vegetables */}
-          <div className="col-md-3">
-            <div
-              className="card h-100 shadow-sm border-0 text-center"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/products/vegetables")}>
-              <img
-                src={vegImg}
-                alt="Vegetables"
-                className="card-img-top"
-                style={{ height: "220px", objectFit: "cover" }}/>
-              <div className="card-body">
-                <h5 className="fw-semibold">Vegetables</h5>
-                <p className="text-muted small mb-0">Farm-fresh & organic</p>
-              </div>
+        <div className="row g-3 g-lg-4">
+          {categories.map(([id, name, description, image]) => (
+            <div className="col-6 col-lg-3" key={id}>
+              <Link className="category-card" to={"/products/" + id}>
+                <img
+                  src={image}
+                  alt={name}
+                  loading="lazy"
+                  width="300"
+                  height="160"
+                />
+                <div className="category-card-body">
+                  <h3>
+                    {name} <span aria-hidden="true">↗</span>
+                  </h3>
+                  <p>{description}</p>
+                </div>
+              </Link>
             </div>
-          </div>
-
-          {/* Fruits */}
-          <div className="col-md-3">
-            <div
-              className="card h-100 shadow-sm border-0 text-center"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/products/fruits")}>
-              <img
-                src={fruitImg}
-                alt="Fruits"
-                className="card-img-top"
-                style={{ height: "220px", objectFit: "cover" }}/>
-              <div className="card-body">
-                <h5 className="fw-semibold">Fruits</h5>
-                <p className="text-muted small mb-0">Fresh & seasonal</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Dairy */}
-          <div className="col-md-3">
-            <div
-              className="card h-100 shadow-sm border-0 text-center"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/products/dairy")}>
-              <img
-                src={dairyImg}
-                alt="Dairy"
-                className="card-img-top"
-                style={{ height: "220px", objectFit: "cover" }}
-              />
-              <div className="card-body">
-                <h5 className="fw-semibold">Dairy</h5>
-                <p className="text-muted small mb-0">Milk, cheese & more</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Daily Essentials */}
-          <div className="col-md-3">
-            <div
-              className="card h-100 shadow-sm border-0 text-center"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/products/essentials")}>
-              <img
-                src={essentialsImg}
-                alt="Daily Essentials"
-                className="card-img-top"
-                style={{ height: "220px", objectFit: "cover" }}/>
-              <div className="card-body">
-                <h5 className="fw-semibold">Daily Essentials</h5>
-                <p className="text-muted small mb-0">Rice, oil & groceries</p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default CategorySection;
+}
