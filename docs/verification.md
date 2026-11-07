@@ -68,4 +68,4 @@ These results establish the flows listed above; they are not a guarantee against
 
 ## Follow-up hero layout check
 
-The reported narrow-tab image cropping and stacked buttons were corrected. The grocery image uses contain sizing, narrow layouts stack the image below the text, and the two calls to action stay in one row. Browser checks at 320, 390, approximately 577, 768 and 1024 CSS pixels confirmed side-by-side buttons, contain sizing, and no horizontal document overflow. Tablet/desktop layouts retain two columns where there is enough room.
+The current requested design uses one combined hero on phones and tablets (up to 1024 CSS pixels). The grocery picture is positioned behind the content at 20% opacity, with readable text and side-by-side buttons above it. It does not occupy a separate image block. Browser checks at 320, 390, 768 and 1024 CSS pixels confirmed background positioning, opacity, content stacking, side-by-side buttons and no horizontal document overflow. At 1280 pixels the existing desktop two-column image/text layout remains intact. Lint and the production build pass for this change.
