@@ -632,6 +632,12 @@ main {
     max-width: 650px;
     padding: 48px 8px;
   }
+  .hero-copy > p:not(.eyebrow) {
+    color: var(--ink);
+  }
+  .hero-actions .btn-outline-success {
+    background: #fffffff0;
+  }
   .hero-image {
     position: absolute;
     inset: 0;
