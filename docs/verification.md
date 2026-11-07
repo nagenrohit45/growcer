@@ -65,3 +65,7 @@ A production-only rewrite defect was found by live smoke checks during the first
 ## Limits of this verification
 
 These results establish the flows listed above; they are not a guarantee against every possible defect or a load/security penetration test. Real payment processing, actual delivery operations, staffed support, email verification/password recovery, merchant administration and live inventory are not claimed. Card payments are deliberately simulated as requested. Informational pages describe the actual demo behavior. Those operational services and verified business policies would be needed before accepting real commerce.
+
+## Follow-up hero layout check
+
+The reported narrow-tab image cropping and stacked buttons were corrected. The grocery image uses contain sizing, narrow layouts stack the image below the text, and the two calls to action stay in one row. Browser checks at 320, 390, approximately 577, 768 and 1024 CSS pixels confirmed side-by-side buttons, contain sizing, and no horizontal document overflow. Tablet/desktop layouts retain two columns where there is enough room.
