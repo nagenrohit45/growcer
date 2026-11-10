@@ -1,0 +1,15 @@
+# Build from the repository root: docker build -f Dockerfile.backend -t growcer-api .
+FROM eclipse-temurin:21-jdk AS build
+WORKDIR /workspace
+COPY backend ./backend
+COPY shared/catalog.json ./shared/catalog.json
+WORKDIR /workspace/backend
+RUN chmod +x mvnw && ./mvnw -B -ntp -DskipTests package
+
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+COPY --from=build /workspace/backend/target/growcer-api-1.0.0.jar app.jar
+ENV SERVER_ADDRESS=0.0.0.0
+EXPOSE 8080
+USER 10001
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]

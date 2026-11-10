@@ -1,0 +1,198 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Tomato",
+      "price": 40,
+      "category": "vegetables",
+      "unit": "1 kg",
+      "image": "category-img/vegetables/tomato.webp"
+    },
+    {
+      "id": 2,
+      "name": "Potato",
+      "price": 30,
+      "category": "vegetables",
+      "unit": "per pack",
+      "image": "category-img/vegetables/potato.webp"
+    },
+    {
+      "id": 3,
+      "name": "Onion",
+      "price": 35,
+      "category": "vegetables",
+      "unit": "per pack",
+      "image": "category-img/vegetables/onion.webp"
+    },
+    {
+      "id": 4,
+      "name": "Carrot",
+      "price": 50,
+      "category": "vegetables",
+      "unit": "per pack",
+      "image": "category-img/vegetables/carrot.webp"
+    },
+    {
+      "id": 5,
+      "name": "Cabbage",
+      "price": 45,
+      "category": "vegetables",
+      "unit": "per pack",
+      "image": "category-img/vegetables/cabbage.webp"
+    },
+    {
+      "id": 6,
+      "name": "Apple",
+      "price": 120,
+      "category": "fruits",
+      "unit": "1 kg",
+      "image": "category-img/fruits/apple.webp"
+    },
+    {
+      "id": 7,
+      "name": "Banana",
+      "price": 50,
+      "category": "fruits",
+      "unit": "per pack",
+      "image": "category-img/fruits/banana.webp"
+    },
+    {
+      "id": 8,
+      "name": "Orange",
+      "price": 80,
+      "category": "fruits",
+      "unit": "per pack",
+      "image": "category-img/fruits/orange.webp"
+    },
+    {
+      "id": 9,
+      "name": "Mango",
+      "price": 150,
+      "category": "fruits",
+      "unit": "per pack",
+      "image": "category-img/fruits/mango.webp"
+    },
+    {
+      "id": 10,
+      "name": "Grapes",
+      "price": 90,
+      "category": "fruits",
+      "unit": "per pack",
+      "image": "category-img/fruits/grape.webp"
+    },
+    {
+      "id": 11,
+      "name": "Milk",
+      "price": 55,
+      "category": "dairy",
+      "unit": "per pack",
+      "image": "category-img/dairy/milk.webp"
+    },
+    {
+      "id": 12,
+      "name": "Curd",
+      "price": 40,
+      "category": "dairy",
+      "unit": "per pack",
+      "image": "category-img/dairy/curd.webp"
+    },
+    {
+      "id": 13,
+      "name": "Butter",
+      "price": 60,
+      "category": "dairy",
+      "unit": "per pack",
+      "image": "category-img/dairy/butter.webp"
+    },
+    {
+      "id": 14,
+      "name": "Paneer",
+      "price": 80,
+      "category": "dairy",
+      "unit": "per pack",
+      "image": "category-img/dairy/paneer.webp"
+    },
+    {
+      "id": 15,
+      "name": "Cheese",
+      "price": 120,
+      "category": "dairy",
+      "unit": "per pack",
+      "image": "category-img/dairy/cheese.webp"
+    },
+    {
+      "id": 16,
+      "name": "Rice",
+      "price": 60,
+      "category": "essentials",
+      "unit": "1 kg",
+      "image": "category-img/essentials/rice.webp"
+    },
+    {
+      "id": 17,
+      "name": "Toor Dal",
+      "price": 110,
+      "category": "essentials",
+      "unit": "per pack",
+      "image": "category-img/essentials/dal.webp"
+    },
+    {
+      "id": 18,
+      "name": "Sugar",
+      "price": 45,
+      "category": "essentials",
+      "unit": "per pack",
+      "image": "category-img/essentials/sugar.webp"
+    },
+    {
+      "id": 19,
+      "name": "Salt",
+      "price": 20,
+      "category": "essentials",
+      "unit": "per pack",
+      "image": "category-img/essentials/salt.webp"
+    },
+    {
+      "id": 20,
+      "name": "Cooking Oil",
+      "price": 150,
+      "category": "essentials",
+      "unit": "per pack",
+      "image": "category-img/essentials/oil.webp"
+    },
+    {
+      "id": 102,
+      "name": "Milk",
+      "price": 30,
+      "category": "dairy",
+      "unit": "500 ml",
+      "image": "products/milk.webp"
+    },
+    {
+      "id": 103,
+      "name": "Rice",
+      "price": 350,
+      "category": "essentials",
+      "unit": "5 kg",
+      "image": "products/rice.webp"
+    }
+  ],
+  "coupons": [
+    {
+      "code": "SAVE10",
+      "label": "10% off your basket"
+    },
+    {
+      "code": "FLAT50",
+      "label": "₹50 off, up to your basket value"
+    },
+    {
+      "code": "FREESHIP",
+      "label": "₹30 delivery promotion"
+    },
+    {
+      "code": "VEG20",
+      "label": "20% off vegetables"
+    }
+  ]
+}

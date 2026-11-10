@@ -8,14 +8,16 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "node --test tests/api.test.js tests/search.test.js",
+    "test": "node --test tests/pricing.test.js tests/search.test.js",
     "test:smoke": "node scripts/smoke.js",
-    "images:optimize": "node scripts/optimize-images.js"
+    "images:optimize": "node scripts/optimize-images.js",
+    "test:backend": "node scripts/backend.js test",
+    "dev:backend": "node scripts/backend.js run",
+    "build:backend": "node scripts/backend.js package"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.8",
-    "pg": "^8.23.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
@@ -30,7 +32,6 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
-    "pg-mem": "^3.0.14",
     "sharp": "^0.35.5",
     "vite": "^7.2.4"
   },
